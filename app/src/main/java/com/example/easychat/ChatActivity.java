@@ -1,6 +1,7 @@
 package com.example.easychat;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -73,6 +74,8 @@ public class ChatActivity extends AppCompatActivity {
         otherUsername = findViewById(R.id.other_username);
         recyclerView = findViewById(R.id.chat_recycler_view);
         imageView = findViewById(R.id.profile_pic_image_view);
+        ImageButton deleteChatBtn = findViewById(R.id.delete_chat_btn);
+        deleteChatBtn.setOnClickListener(v -> showDeleteConfirmationDialog());
 
         FirebaseUtil.getOtherProfilePicStorageRef(otherUser.getUserId()).getDownloadUrl()
                 .addOnCompleteListener(t -> {
@@ -96,6 +99,34 @@ public class ChatActivity extends AppCompatActivity {
 
         getOrCreateChatroomModel();
         setupChatRecyclerView();
+    }
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Удаление чата");
+        builder.setMessage("Вы уверены, что хотите удалить этот чат? Это действие нельзя отменить.");
+
+        builder.setPositiveButton("Удалить", (dialog, which) -> deleteChat());
+        builder.setNegativeButton("Отмена", (dialog, which) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void deleteChat() {
+        // Логика удаления чата здесь
+        // Вы должны удалить документ чата и связанные с ним сообщения
+        // Например:
+        FirebaseUtil.getChatroomReference(chatroomId).delete();
+        FirebaseUtil.getChatroomMessageReference(chatroomId).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (DocumentSnapshot document : task.getResult()) {
+                    document.getReference().delete();
+                }
+            }
+        });
+
+        // Завершите активность или перейдите на экран списка чатов
+        finish();
     }
 
     void setupChatRecyclerView(){
