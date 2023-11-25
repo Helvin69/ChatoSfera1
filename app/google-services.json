@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1080850660386",
+    "project_id": "my-chatosfera",
+    "storage_bucket": "my-chatosfera.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080850660386:android:fd94d0db11482fb903de7b",
+        "android_client_info": {
+          "package_name": "com.example.easychat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXIFUPARZljx22rIHd1ZEg6zo4vsupMEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
