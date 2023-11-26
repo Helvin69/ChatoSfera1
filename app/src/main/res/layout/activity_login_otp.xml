@@ -73,7 +73,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter OTP sent to your phone number"
+        android:text="Введите код, отправленный на ваш номер телефона"
         android:layout_gravity="center_vertical"
         android:letterSpacing="0.08"
         android:textStyle="bold"
@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:hint="OTP"
+            android:hint="Код"
             android:inputType="number"
             android:maxLength="6"
             android:layout_margin="10dp"
@@ -114,7 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_rounded_corner"
-            android:text="NEXT"
+            android:text="Далее"
             android:id="@+id/login_next_btn"/>
         <ProgressBar
             android:layout_width="32dp"
@@ -129,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="10"
         android:gravity="center"
-        android:text="Resend OTP in 30 sec"
+        android:text="Повторно отправить код через 30 секунд."
         android:id="@+id/resend_otp_textview"/>
 
 </LinearLayout>

@@ -73,12 +73,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter your username"
         android:layout_gravity="center_vertical"
+        android:layout_weight="5"
         android:letterSpacing="0.08"
-        android:textStyle="bold"
+        android:text="Введите ваше имя"
         android:textSize="25sp"
-        android:layout_weight="5"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:hint="Username"
+            android:hint="Имя"
             android:inputType="text"
             android:layout_margin="10dp"
             android:background="@drawable/edit_text_rounded_corner"
@@ -113,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_rounded_corner"
-            android:text="Let me in"
+            android:text="Продолжить"
             android:id="@+id/login_let_me_in_btn"/>
         <ProgressBar
             android:layout_width="32dp"

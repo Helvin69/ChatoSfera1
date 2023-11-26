@@ -19,21 +19,21 @@
         android:id="@+id/profile_image_view"/>
 
     <EditText
+        android:id="@+id/profile_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:hint="Username"
-        android:inputType="text"
         android:layout_margin="10dp"
         android:background="@drawable/edit_text_rounded_corner"
         android:elevation="5dp"
-        android:id="@+id/profile_username"
-        />
+        android:hint="Имя"
+        android:inputType="text"
+        android:padding="10dp" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:hint="Phone"
+        android:hint="Телефон"
         android:inputType="text"
         android:layout_margin="10dp"
         android:background="@drawable/edit_text_rounded_corner"
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_rounded_corner"
-            android:text="Update profile"
+            android:text="Обновить профиль"
             android:id="@+id/profle_update_btn"/>
         <ProgressBar
             android:layout_width="32dp"
@@ -65,7 +65,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:text="Выйти"
         android:id="@+id/logout_btn"/>
 
 
