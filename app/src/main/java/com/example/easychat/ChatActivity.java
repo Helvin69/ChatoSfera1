@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.easychat.adapter.ChatRecyclerAdapter;
 import com.example.easychat.adapter.SearchUserRecyclerAdapter;
@@ -113,6 +114,25 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void deleteChat() {
+        // Проверяем существование профильной картинки перед удалением чата
+        FirebaseUtil.getOtherProfilePicStorageRef(otherUser.getUserId()).getDownloadUrl()
+                .addOnCompleteListener(downloadUrlTask -> {
+                    if (downloadUrlTask.isSuccessful()) {
+                        // Объект существует, можно получить URL
+                        Uri uri = downloadUrlTask.getResult();
+                        AndroidUtil.setProfilePic(this, uri, imageView);
+                    } else {
+                        // Объект не существует, выполните соответствующие действия или оставьте, как есть.
+                        handleObjectNotFound();
+                    }
+
+                    // Продолжаем с логикой удаления чата
+                    continueChatDeletion();
+                });
+    }
+
+    // Метод для логики удаления чата после проверки существования профильной картинки
+    private void continueChatDeletion() {
         // Логика удаления чата здесь
         // Вы должны удалить документ чата и связанные с ним сообщения
         // Например:
@@ -123,11 +143,21 @@ public class ChatActivity extends AppCompatActivity {
                     document.getReference().delete();
                 }
             }
-        });
 
-        // Завершите активность или перейдите на экран списка чатов
-        finish();
+            // Завершите активность или перейдите на экран списка чатов
+            finish();
+        });
     }
+
+    // Метод для обработки ситуации, когда объект не найден
+    private void handleObjectNotFound() {
+        // Показываем уведомление пользователю о том, что объект не найден
+        Toast.makeText(this, "Профильная картинка не найдена", Toast.LENGTH_SHORT).show();
+
+        // Здесь вы можете выполнить другие дополнительные действия, связанные с отсутствием объекта
+        // Например, вы можете выполнить другие необходимые операции в зависимости от требований вашего приложения.
+    }
+
 
     void setupChatRecyclerView(){
         Query query = FirebaseUtil.getChatroomMessageReference(chatroomId)
